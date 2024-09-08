@@ -1,17 +1,14 @@
 import * as cdk from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
 import * as CdkLambdaVersionAliasExample from '../lib/cdk-lambda-version-alias-example-stack';
-
+import {expect, test} from "vitest";
 // example test. To run these tests, uncomment this file along with the
 // example resource in lib/cdk-lambda-version-alias-example-stack.ts
 test('SQS Queue Created', () => {
   const app = new cdk.App();
-//     // WHEN
   const stack = new CdkLambdaVersionAliasExample.CdkLambdaVersionAliasExampleStack(app, 'MyTestStack');
-//     // THEN
   const template = Template.fromStack(stack);
 
-  template.hasResourceProperties('AWS::SQS::Queue', {
-    VisibilityTimeout: 300
-  });
+  // snapshot testを実行する
+  expect(template).toMatchSnapshot();
 });
