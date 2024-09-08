@@ -15,21 +15,13 @@ exports[`SQS Queue Created 1`] = `
         "FunctionName": {
           "Ref": "CdkLambdaVersionAliasExampleFunction8E5C8A1A",
         },
-        "FunctionVersion": "$LATEST",
-        "Name": "test",
-        "RoutingConfig": {
-          "AdditionalVersionWeights": [
-            {
-              "FunctionVersion": {
-                "Fn::GetAtt": [
-                  "CdkLambdaVersionAliasExampleVersion0CB4103F",
-                  "Version",
-                ],
-              },
-              "FunctionWeight": 0.5,
-            },
+        "FunctionVersion": {
+          "Fn::GetAtt": [
+            "CdkLambdaVersionAliasExampleVersionOld4F58161B",
+            "Version",
           ],
         },
+        "Name": "test",
       },
       "Type": "AWS::Lambda::Alias",
     },
@@ -141,7 +133,7 @@ exports[`SQS Queue Created 1`] = `
       "Type": "AWS::SQS::Queue",
       "UpdateReplacePolicy": "Delete",
     },
-    "CdkLambdaVersionAliasExampleVersion0CB4103F": {
+    "CdkLambdaVersionAliasExampleVersionOld4F58161B": {
       "Properties": {
         "FunctionName": {
           "Ref": "CdkLambdaVersionAliasExampleFunction8E5C8A1A",
