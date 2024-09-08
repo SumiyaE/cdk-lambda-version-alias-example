@@ -9,11 +9,6 @@ export class CdkLambdaVersionAliasExampleStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    // SQSの作成
-    const queue = new sqs.Queue(this, 'CdkLambdaVersionAliasExampleQueue', {
-      visibilityTimeout: cdk.Duration.seconds(300)
-    });
-
     // lambdaの作成
     const lambda = new NodejsFunction(this, 'CdkLambdaVersionAliasExampleFunction', {
       runtime: Runtime.NODEJS_LATEST,
@@ -37,7 +32,13 @@ export class CdkLambdaVersionAliasExampleStack extends cdk.Stack {
       }]
     });
 
-    // lambdaのトリガーとしてSQSを設定
+
+    // SQSの作成
+    const queue = new sqs.Queue(this, 'CdkLambdaVersionAliasExampleQueue', {
+      visibilityTimeout: cdk.Duration.seconds(300)
+    });
+
+    // SQSをLambdaのトリガーに設定
     lambda.addEventSource(new SqsEventSource(queue));
   }
 }
