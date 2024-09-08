@@ -3,6 +3,7 @@ import { Construct } from 'constructs';
 import * as sqs from 'aws-cdk-lib/aws-sqs';
 import {NodejsFunction} from "aws-cdk-lib/aws-lambda-nodejs";
 import {Runtime} from "aws-cdk-lib/aws-lambda";
+import {SqsEventSource} from "aws-cdk-lib/aws-lambda-event-sources";
 
 export class CdkLambdaVersionAliasExampleStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -19,5 +20,8 @@ export class CdkLambdaVersionAliasExampleStack extends cdk.Stack {
       entry: 'lambda/handler.ts',
       handler: 'handler',
     });
+
+    // lambdaのトリガーとしてSQSを設定
+    lambda.addEventSource(new SqsEventSource(queue));
   }
 }
