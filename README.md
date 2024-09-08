@@ -22,3 +22,13 @@ aws sqs send-message --queue-url https://sqs.ap-northeast-1.amazonaws.com/{aws_a
 
 - {aws_accound_id} はAWSアカウントIDを指定してください。
 - {hash} はリソース作成時に自動生成されるハッシュ値を指定してください。
+
+## メモ
+
+> [!WARNING]
+> aliasに加重設定を加える場合、$Latestを指定することはできない
+> cdk deployを実行しようとすると、以下のように弾かれてしまう。
+> ```shell 
+> 4:45:13 PM | UPDATE_FAILED        | AWS::Lambda::Alias              | CdkLambdaVersionAl...ampleAlias6E7DC8B0
+> Resource handler returned message: "$LATEST is not supported for an alias pointing to more than 1 version (Service: Lambda, Status Code: 400, Request ID: 4f539cce-ff5c-46d7-ab8c-7e54967245cf)" (RequestToken: a1174c44-58cf-ff1a-3e45-85ca3c460251, HandlerErrorCode: InvalidRequest)
+> ```
