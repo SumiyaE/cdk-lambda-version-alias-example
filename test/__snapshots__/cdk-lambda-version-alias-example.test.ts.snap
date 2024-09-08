@@ -10,6 +10,66 @@ exports[`SQS Queue Created 1`] = `
     },
   },
   "Resources": {
+    "CdkLambdaVersionAliasExampleFunction8E5C8A1A": {
+      "DependsOn": [
+        "CdkLambdaVersionAliasExampleFunctionServiceRole87861BA8",
+      ],
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "28ed99b1acfa746bcf840c2c4b4dc1a1d56bffb26fda8e8250f24b31c8773582.zip",
+        },
+        "Environment": {
+          "Variables": {
+            "QUEUE_URL": {
+              "Ref": "CdkLambdaVersionAliasExampleQueue3D8ED1F9",
+            },
+          },
+        },
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "CdkLambdaVersionAliasExampleFunctionServiceRole87861BA8",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs18.x",
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "CdkLambdaVersionAliasExampleFunctionServiceRole87861BA8": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
     "CdkLambdaVersionAliasExampleQueue3D8ED1F9": {
       "DeletionPolicy": "Delete",
       "Properties": {
