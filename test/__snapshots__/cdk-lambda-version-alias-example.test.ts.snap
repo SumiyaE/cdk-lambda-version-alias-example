@@ -10,21 +10,6 @@ exports[`SQS Queue Created 1`] = `
     },
   },
   "Resources": {
-    "CdkLambdaVersionAliasExampleAlias6E7DC8B0": {
-      "Properties": {
-        "FunctionName": {
-          "Ref": "CdkLambdaVersionAliasExampleFunction8E5C8A1A",
-        },
-        "FunctionVersion": {
-          "Fn::GetAtt": [
-            "CdkLambdaVersionAliasExampleVersionOld4F58161B",
-            "Version",
-          ],
-        },
-        "Name": "test",
-      },
-      "Type": "AWS::Lambda::Alias",
-    },
     "CdkLambdaVersionAliasExampleFunction8E5C8A1A": {
       "DependsOn": [
         "CdkLambdaVersionAliasExampleFunctionServiceRoleDefaultPolicyBD439B03",
@@ -37,6 +22,7 @@ exports[`SQS Queue Created 1`] = `
           },
           "S3Key": "HASH-REPLACED.zip",
         },
+        "Description": "This is a lambda function",
         "Handler": "index.handler",
         "Role": {
           "Fn::GetAtt": [
@@ -47,6 +33,14 @@ exports[`SQS Queue Created 1`] = `
         "Runtime": "nodejs18.x",
       },
       "Type": "AWS::Lambda::Function",
+    },
+    "CdkLambdaVersionAliasExampleFunctionCurrentVersion56163E59a372f2a017e38832f7802c0865c40447": {
+      "Properties": {
+        "FunctionName": {
+          "Ref": "CdkLambdaVersionAliasExampleFunction8E5C8A1A",
+        },
+      },
+      "Type": "AWS::Lambda::Version",
     },
     "CdkLambdaVersionAliasExampleFunctionServiceRole87861BA8": {
       "Properties": {
@@ -125,7 +119,7 @@ exports[`SQS Queue Created 1`] = `
       },
       "Type": "AWS::Lambda::EventSourceMapping",
     },
-    "CdkLambdaVersionAliasExampleQueue3D8ED1F9": {
+    "CdkLambdaVersionAliasExampleQueue2C687CA43": {
       "DeletionPolicy": "Delete",
       "Properties": {
         "VisibilityTimeout": 300,
@@ -133,13 +127,13 @@ exports[`SQS Queue Created 1`] = `
       "Type": "AWS::SQS::Queue",
       "UpdateReplacePolicy": "Delete",
     },
-    "CdkLambdaVersionAliasExampleVersionOld4F58161B": {
+    "CdkLambdaVersionAliasExampleQueue3D8ED1F9": {
+      "DeletionPolicy": "Delete",
       "Properties": {
-        "FunctionName": {
-          "Ref": "CdkLambdaVersionAliasExampleFunction8E5C8A1A",
-        },
+        "VisibilityTimeout": 300,
       },
-      "Type": "AWS::Lambda::Version",
+      "Type": "AWS::SQS::Queue",
+      "UpdateReplacePolicy": "Delete",
     },
   },
   "Rules": {

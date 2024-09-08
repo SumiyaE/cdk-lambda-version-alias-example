@@ -6,4 +6,5 @@ export const handler = async (event: SQSEvent, context: Context): Promise<void> 
     console.log(`Message body: ${record.body}`)
   }
   console.log('-------------ここで処理終了-------------')
+  console.log('-------------ソースコードを若干変更-------------')
 }
