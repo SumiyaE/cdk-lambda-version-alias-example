@@ -12,6 +12,7 @@ exports[`SQS Queue Created 1`] = `
   "Resources": {
     "CdkLambdaVersionAliasExampleFunction8E5C8A1A": {
       "DependsOn": [
+        "CdkLambdaVersionAliasExampleFunctionServiceRoleDefaultPolicyBD439B03",
         "CdkLambdaVersionAliasExampleFunctionServiceRole87861BA8",
       ],
       "Properties": {
@@ -19,14 +20,7 @@ exports[`SQS Queue Created 1`] = `
           "S3Bucket": {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "28ed99b1acfa746bcf840c2c4b4dc1a1d56bffb26fda8e8250f24b31c8773582.zip",
-        },
-        "Environment": {
-          "Variables": {
-            "QUEUE_URL": {
-              "Ref": "CdkLambdaVersionAliasExampleQueue3D8ED1F9",
-            },
-          },
+          "S3Key": "HASH-REPLACED.zip",
         },
         "Handler": "index.handler",
         "Role": {
@@ -69,6 +63,52 @@ exports[`SQS Queue Created 1`] = `
         ],
       },
       "Type": "AWS::IAM::Role",
+    },
+    "CdkLambdaVersionAliasExampleFunctionServiceRoleDefaultPolicyBD439B03": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "sqs:ReceiveMessage",
+                "sqs:ChangeMessageVisibility",
+                "sqs:GetQueueUrl",
+                "sqs:DeleteMessage",
+                "sqs:GetQueueAttributes",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "CdkLambdaVersionAliasExampleQueue3D8ED1F9",
+                  "Arn",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "CdkLambdaVersionAliasExampleFunctionServiceRoleDefaultPolicyBD439B03",
+        "Roles": [
+          {
+            "Ref": "CdkLambdaVersionAliasExampleFunctionServiceRole87861BA8",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "CdkLambdaVersionAliasExampleFunctionSqsEventSourceMyTestStackCdkLambdaVersionAliasExampleQueue095E73199C51880A": {
+      "Properties": {
+        "EventSourceArn": {
+          "Fn::GetAtt": [
+            "CdkLambdaVersionAliasExampleQueue3D8ED1F9",
+            "Arn",
+          ],
+        },
+        "FunctionName": {
+          "Ref": "CdkLambdaVersionAliasExampleFunction8E5C8A1A",
+        },
+      },
+      "Type": "AWS::Lambda::EventSourceMapping",
     },
     "CdkLambdaVersionAliasExampleQueue3D8ED1F9": {
       "DeletionPolicy": "Delete",
