@@ -2,7 +2,7 @@ import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import * as sqs from 'aws-cdk-lib/aws-sqs';
 import {NodejsFunction} from "aws-cdk-lib/aws-lambda-nodejs";
-import {Runtime} from "aws-cdk-lib/aws-lambda";
+import {Alias, Runtime} from "aws-cdk-lib/aws-lambda";
 import {SqsEventSource} from "aws-cdk-lib/aws-lambda-event-sources";
 
 export class CdkLambdaVersionAliasExampleStack extends cdk.Stack {
@@ -19,6 +19,13 @@ export class CdkLambdaVersionAliasExampleStack extends cdk.Stack {
       runtime: Runtime.NODEJS_LATEST,
       entry: 'lambda/handler.ts',
       handler: 'handler',
+    });
+
+    const lambdaLatestVersion = lambda.latestVersion
+    // lambdaのエイリアスを作成
+    const alias = new Alias(this, 'CdkLambdaVersionAliasExampleAlias', {
+      aliasName: 'test',
+      version: lambdaLatestVersion
     });
 
     // lambdaのトリガーとしてSQSを設定

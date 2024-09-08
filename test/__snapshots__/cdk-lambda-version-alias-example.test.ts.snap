@@ -10,6 +10,16 @@ exports[`SQS Queue Created 1`] = `
     },
   },
   "Resources": {
+    "CdkLambdaVersionAliasExampleAlias6E7DC8B0": {
+      "Properties": {
+        "FunctionName": {
+          "Ref": "CdkLambdaVersionAliasExampleFunction8E5C8A1A",
+        },
+        "FunctionVersion": "$LATEST",
+        "Name": "test",
+      },
+      "Type": "AWS::Lambda::Alias",
+    },
     "CdkLambdaVersionAliasExampleFunction8E5C8A1A": {
       "DependsOn": [
         "CdkLambdaVersionAliasExampleFunctionServiceRoleDefaultPolicyBD439B03",
