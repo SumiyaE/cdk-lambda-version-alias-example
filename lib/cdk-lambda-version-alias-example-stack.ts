@@ -16,12 +16,13 @@ export class CdkLambdaVersionAliasExampleStack extends cdk.Stack {
       handler: 'handler',
       description: 'This is a lambda function',
     });
-    // const currentVersion = lambda.currentVersion
 
     // lambdaの現在のバージョンを発行
-    // const lambdaOldVersion = new Version(this, 'CdkLambdaVersionAliasExampleVersionOld', {
-    //   lambda: lambda
-    // })
+    const lambdaOldVersion = new Version(this, 'CdkLambdaVersionAliasExampleVersionOld', {
+      lambda: lambda
+    })
+
+    // const currentVersion = lambda.currentVersion
     // lambdaの新しいバージョンを発行
     // const lambdaNewVersion =  new Version(this, 'CdkLambdaVersionAliasExampleVersionNew', {
     //   lambda: lambda
