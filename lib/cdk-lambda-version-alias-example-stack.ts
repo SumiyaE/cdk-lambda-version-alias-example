@@ -32,7 +32,7 @@ export class CdkLambdaVersionAliasExampleStack extends cdk.Stack {
       version: lambdaOldVersion,
          additionalVersions: [{
             version: lambdaNewVersion,
-            weight: 0.5
+            weight: 0.9
           }]
     });
 
