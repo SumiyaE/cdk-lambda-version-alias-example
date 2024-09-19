@@ -26,21 +26,23 @@ export class CdkLambdaVersionAliasExampleStack extends cdk.Stack {
       lambda: lambda
     })
 
+    // lambdaのエイリアスを作成
+    const alias = new Alias(this, 'CdkLambdaVersionAliasExampleAlias', {
+      aliasName: 'public',
+      version: lambdaOldVersion,
+    });
+
+
+    //      additionalVersions: [{
+    //         version: lambdaNewVersion,
+    //         weight: 0.5
+    //       }]
+
     // const currentVersion = lambda.currentVersion
     // lambdaの新しいバージョンを発行
     // const lambdaNewVersion =  new Version(this, 'CdkLambdaVersionAliasExampleVersionNew', {
     //   lambda: lambda
     // })
-
-    // lambdaのエイリアスを作成
-    // const alias = new Alias(this, 'CdkLambdaVersionAliasExampleAlias', {
-      // aliasName: 'test',
-      // version: lambdaOldVersion,
-      // additionalVersions: [{
-      //   version: lambdaNewVersion,
-      //   weight: 0.5
-      // }]
-    // });
 
 
     // SQSの作成
